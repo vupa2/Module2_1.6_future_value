@@ -12,6 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
   
+  if (empty($errors)) {
+    // calculateFutureValue();
+  }
 }
 ?>
 
