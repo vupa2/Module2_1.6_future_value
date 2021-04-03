@@ -12,8 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   if (empty($errors)) {
     $result = $data['investment'] * pow((1 + $data['interest']/100), $data['year']);
-  } else {
-    $result = '';
   }
 }
 ?>
@@ -58,6 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endforeach; ?>
   <?php endif; ?>
   
-  <h4><?= $result ?></h4>
+  <h4><?= $result ?? '' ?></h4>
 </body>
 </html>
