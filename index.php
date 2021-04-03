@@ -1,21 +1,19 @@
 <?php
-
-function calculateFutureValue($investment, $interest, $year) {
-  return $investment * pow((1 + $interest/100), $year);
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $errors = [];
   $data = [];
   foreach ($_POST as $key => $value) {
     if (!is_numeric($value)) {
       $errors[] = "Please fill $key";
+      continue;
     }
     $data[$key] = floatval($value);
   }
   
   if (empty($errors)) {
-    $result = calculateFutureValue($data['investment'], $data['interest'], $data['year']);
+    $result = $data['investment'] * pow((1 + $data['interest']/100), $data['year']);
+  } else {
+    $result = '';
   }
 }
 ?>
@@ -29,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>[Bài tập] Ứng dụng Future Value Calculator</title>
   <style>
-    form > * {
-      margin: 20px 0;
-    }
+      form > * {
+          margin: 20px 0;
+      }
   </style>
 </head>
 <body>
